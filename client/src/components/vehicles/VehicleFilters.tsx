@@ -13,21 +13,23 @@ export default function VehicleFilters({ filters, onChange }: VehicleFiltersProp
   const update = (patch: Partial<Filters>) => onChange({ ...filters, ...patch });
 
   return (
-    <div className="bg-white border border-neutral-200 rounded-xl p-5 space-y-5">
-      <h3 className="font-semibold text-gray-900">Filter</h3>
+    <div className="luxury-card p-5 space-y-6">
+      <h3 className="text-xs font-sans tracking-[0.3em] uppercase text-gold">Filter</h3>
+
+      <div className="h-px bg-gold/10" />
 
       {/* Category */}
       <div>
-        <label className="block text-xs font-medium text-neutral-500 uppercase tracking-wider mb-2">
+        <label className="block text-xs font-sans tracking-[0.2em] uppercase text-neutral-500 mb-3">
           Category
         </label>
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => update({ category: undefined })}
-            className={`px-3 py-1 rounded-full text-xs border transition-colors ${
+            className={`px-3 py-1.5 text-[10px] font-sans tracking-widest uppercase border transition-all duration-200 ${
               !filters.category
-                ? 'bg-black text-white border-black'
-                : 'text-neutral-600 border-neutral-300 hover:border-black'
+                ? 'border-gold text-gold bg-gold/5'
+                : 'border-dark-500 text-neutral-600 hover:border-gold/40 hover:text-neutral-400'
             }`}
           >
             All
@@ -36,10 +38,10 @@ export default function VehicleFilters({ filters, onChange }: VehicleFiltersProp
             <button
               key={cat}
               onClick={() => update({ category: cat as Filters['category'] })}
-              className={`px-3 py-1 rounded-full text-xs border capitalize transition-colors ${
+              className={`px-3 py-1.5 text-[10px] font-sans tracking-widest uppercase border capitalize transition-all duration-200 ${
                 filters.category === cat
-                  ? 'bg-black text-white border-black'
-                  : 'text-neutral-600 border-neutral-300 hover:border-black'
+                  ? 'border-gold text-gold bg-gold/5'
+                  : 'border-dark-500 text-neutral-600 hover:border-gold/40 hover:text-neutral-400'
               }`}
             >
               {cat}
@@ -50,7 +52,7 @@ export default function VehicleFilters({ filters, onChange }: VehicleFiltersProp
 
       {/* Price range */}
       <div>
-        <label className="block text-xs font-medium text-neutral-500 uppercase tracking-wider mb-2">
+        <label className="block text-xs font-sans tracking-[0.2em] uppercase text-neutral-500 mb-3">
           Daily Rate
         </label>
         <div className="flex items-center gap-2">
@@ -59,39 +61,42 @@ export default function VehicleFilters({ filters, onChange }: VehicleFiltersProp
             placeholder="Min $"
             value={filters.minPrice ?? ''}
             onChange={(e) => update({ minPrice: e.target.value ? Number(e.target.value) : undefined })}
-            className="w-full border border-neutral-300 rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+            className="w-full bg-dark-300 border border-dark-500 text-white text-xs font-sans px-3 py-2
+                       focus:outline-none focus:border-gold/40 placeholder:text-neutral-700 transition-colors"
           />
-          <span className="text-neutral-400">—</span>
+          <span className="text-neutral-600 text-xs">—</span>
           <input
             type="number"
             placeholder="Max $"
             value={filters.maxPrice ?? ''}
             onChange={(e) => update({ maxPrice: e.target.value ? Number(e.target.value) : undefined })}
-            className="w-full border border-neutral-300 rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+            className="w-full bg-dark-300 border border-dark-500 text-white text-xs font-sans px-3 py-2
+                       focus:outline-none focus:border-gold/40 placeholder:text-neutral-700 transition-colors"
           />
         </div>
       </div>
 
       {/* Availability */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
         <input
           type="checkbox"
           id="available"
           checked={filters.available === true}
           onChange={(e) => update({ available: e.target.checked ? true : undefined })}
-          className="h-4 w-4 rounded border-neutral-300 text-black focus:ring-black"
+          className="h-3.5 w-3.5 border border-dark-500 bg-dark-300 accent-gold"
         />
-        <label htmlFor="available" className="text-sm text-gray-700">
-          Available only
+        <label htmlFor="available" className="text-xs font-sans tracking-widest uppercase text-neutral-500 cursor-pointer">
+          Available Only
         </label>
       </div>
 
-      {/* Reset */}
+      <div className="h-px bg-gold/10" />
+
       <button
         onClick={() => onChange({})}
-        className="text-xs text-neutral-500 hover:text-black underline"
+        className="text-[10px] font-sans tracking-widest uppercase text-neutral-600 hover:text-gold transition-colors duration-200"
       >
-        Clear filters
+        Clear Filters
       </button>
     </div>
   );

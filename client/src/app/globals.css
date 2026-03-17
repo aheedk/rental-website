@@ -4,10 +4,62 @@
 
 @layer base {
   html {
-    @apply antialiased;
+    @apply antialiased scroll-smooth;
   }
 
   body {
-    @apply bg-neutral-50 text-gray-900;
+    background-color: #0D0D0D;
+    @apply text-white;
+  }
+
+  h1, h2, h3, h4, h5 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .gold-divider {
+    @apply flex items-center gap-4 my-2;
+  }
+  .gold-divider::before,
+  .gold-divider::after {
+    content: '';
+    @apply flex-1 h-px;
+    background: linear-gradient(90deg, transparent, #C9A84C55, transparent);
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2
+           border border-gold text-gold font-sans font-medium tracking-widest uppercase text-xs
+           px-8 py-3.5 transition-all duration-300
+           hover:bg-gold hover:text-dark;
+  }
+
+  .btn-gold-filled {
+    @apply inline-flex items-center justify-center gap-2
+           text-dark font-sans font-semibold tracking-widest uppercase text-xs
+           px-8 py-3.5 transition-all duration-300
+           hover:opacity-90;
+    background: linear-gradient(135deg, #C9A84C 0%, #E8C97A 50%, #A07830 100%);
+  }
+
+  .luxury-card {
+    @apply bg-dark-200 border border-dark-400 transition-all duration-300
+           hover:border-gold/40;
+    background-color: #1A1A1A;
+    border-color: #2A2A2A;
+  }
+
+  .section-label {
+    @apply text-gold text-xs font-sans tracking-[0.35em] uppercase;
+  }
+}
+
+@layer utilities {
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #C9A84C 0%, #E8C97A 50%, #A07830 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
